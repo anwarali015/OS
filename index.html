@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+   <meta name="author"             content="Alan G. Labouseur" />
+   <link rel="stylesheet" href="dist/styles/tsos.css" type="text/css" media="screen" />
+   <title>
+      My Bad Ass Os
+   </title>
+
+   <!-- Globals CONSTANTS and _Variables. Must included be first. -->
+   <script type="text/javascript" src="dist/scripts/globals.js"></script>
+
+   <!-- Host (Hardware Simulation) Routines -->
+   <script type="text/javascript" src="dist/scripts/host/control.js"></script>
+   <script type="text/javascript" src="dist/scripts/host/devices.js"></script>
+   <script type="text/javascript" src="dist/scripts/host/cpu.js"></script>
+
+   <!-- Virtual OS Routines: Make sure Kernel code is last, since it needs those above it. -->
+   <script type="text/javascript" src="dist/scripts/os/interrupt.js"></script>
+   <script type="text/javascript" src="dist/scripts/os/canvastext.js"></script>
+   <script type="text/javascript" src="dist/scripts/os/console.js"></script>
+   <script type="text/javascript" src="dist/scripts/os/deviceDriver.js"></script>
+   <script type="text/javascript" src="dist/scripts/os/deviceDriverKeyboard.js"></script>
+   <script type="text/javascript" src="dist/scripts/os/queue.js"></script>
+   <script type="text/javascript" src="dist/scripts/os/shell.js"></script>
+   <script type="text/javascript" src="dist/scripts/os/shellCommand.js"></script>
+   <script type="text/javascript" src="dist/scripts/os/userCommand.js"></script>
+   <script type="text/javascript" src="dist/scripts/os/kernel.js"></script>
+
+   <!-- Other Routines -->
+   <script type="text/javascript" src="dist/scripts/utils.js"></script>
+   <!-- Uncomment this line below to enable Glados testing -->
+   <!-- <script type="text/javascript" src="http://www.labouseur.com/courses/os/projects/glados.js"></script> -->
+
+    <div class="clock" style="margin:2em;">
+        <link rel="stylesheet" href="dist/styles/flipclock.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="dist/styles/flipclock.js"></script>
+    </div>
+
+    <p id="text"></p>
+</head>
+
+<body onload="onDocumentLoad();">
+
+<div id="divMain" style="width:100%;">
+
+   <div id="divButtonBar" style="margin:4px;">
+      <input type="button"
+             id = "btnStartOS"
+             name="brnStartOS"
+             class="normal_button"
+             value="Start"
+             tabindex="0"
+             onclick="TSOS.Control.hostBtnStartOS_click(this);">
+
+      <input type="button"
+             id = "btnHaltOS"
+             name="brnHaltOS"
+             class="normal_button"
+             disabled="disabled"
+             value="Halt"
+             tabindex="1"
+             onclick="TSOS.Control.hostBtnHaltOS_click(this);">
+
+      <input type="button"
+             id = "btnReset"
+             name="brnReset"
+             class="normal_button"
+             disabled="disabled"
+             value="Reset"
+             tabindex="2"
+             onclick="TSOS.Control.hostBtnReset_click(this);">
+   </div>
+
+   <div id="divConsole" style="margin:4px; width:500px; height:500px; float:left;">
+      <canvas id="display"
+              width="500px"
+              height="500px"
+              tabindex="3">
+      </canvas>
+   </div>
+
+   <div id="divLog" style="margin-left:520px;">
+      <label>
+         Host Log
+         <br>
+         <textarea name="taHostLog"
+                   id  ="taHostLog"
+                   rows="26"
+                   cols="48"
+         ></textarea>
+      </label>
+   </div>
+
+   <div id="divUserProgramInput" style="margin-left:520px;">
+      <label>
+         User Program Input
+         <br>
+         <textarea name="taProgramInput"
+                   id  ="taProgramInput"
+                   rows="8"
+                   cols="48"
+         ></textarea>
+      </label>
+   </div>
+
+</div>
+
+<p class="footerText" style="clear:both;">
+   <br>
+   Copyright &copy; 2008 - 2014 No Rights Reserved.
+   <br>
+   Reproduction is prohibited without the express written consent of
+   Ted Codd, Stevie Ray Vaughan, and Ian Fleming.
+</p>
+
+</body>
+</html>
