@@ -215,7 +215,10 @@ var TSOS;
         };
 
         Shell.prototype.shellBSOD = function () {
-            _StdOut.putText("BSOD SCREEN");
+            var image = new Image();
+            image.src = "dist/images/bsod.jpg";
+            _DrawingContext.drawImage(image, 0, 0, 500, 500);
+            _Kernel.krnShutdown();
         };
 
         Shell.prototype.shellHelp = function (args) {
