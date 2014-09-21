@@ -218,7 +218,7 @@ var TSOS;
         * Renders the current Date Object.
         */
         Shell.prototype.shellDate = function () {
-            _StdOut.putText("" + new Date().toLocaleDateString());
+            _StdOut.putText("" + new Date().toLocaleDateString() + " " + new Date().toTimeString());
         };
 
         /**
