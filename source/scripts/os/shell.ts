@@ -245,7 +245,7 @@ module TSOS {
          * Renders the current Date Object.
          */
         public shellDate(){
-            _StdOut.putText("" + new Date().toLocaleDateString());
+            _StdOut.putText("" + new Date().toLocaleDateString() + " " + new Date().toTimeString());
         }
 
         /**
