@@ -29,8 +29,8 @@ var TSOS;
             sc = new TSOS.ShellCommand(this.shellDate, "date", "- Displays the current date and time.");
             this.commandList[this.commandList.length] = sc;
 
-            //wheremi
-            sc = new TSOS.ShellCommand(this.shellWheremi, "wheremi", "- Displays where am I.");
+            //whereami
+            sc = new TSOS.ShellCommand(this.shellWhereami, "whereami", "- Displays where am I.");
             this.commandList[this.commandList.length] = sc;
 
             //surprise
@@ -231,7 +231,7 @@ var TSOS;
         /**
         * Prints the location.
         */
-        Shell.prototype.shellWheremi = function () {
+        Shell.prototype.shellWhereami = function () {
             _StdOut.putText("I'm stuck in a loop....");
         };
 
@@ -289,7 +289,7 @@ var TSOS;
                     s += " ";
                 }
 
-                document.getElementById("time").innerHTML = "Status: " + s;
+                document.getElementById("status").innerHTML = "Status: " + s;
             }
         };
 

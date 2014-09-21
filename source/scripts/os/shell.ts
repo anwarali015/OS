@@ -38,9 +38,9 @@ module TSOS {
                 "- Displays the current date and time.");
             this.commandList[this.commandList.length] = sc;
 
-            //wheremi
-            sc = new ShellCommand(this.shellWheremi,
-                "wheremi",
+            //whereami
+            sc = new ShellCommand(this.shellWhereami,
+                "whereami",
                 "- Displays where am I.");
             this.commandList[this.commandList.length] = sc;
 
@@ -258,7 +258,7 @@ module TSOS {
         /**
          * Prints the location.
          */
-        public shellWheremi(){
+        public shellWhereami(){
             _StdOut.putText("I'm stuck in a loop....");
         }
 
@@ -321,7 +321,7 @@ module TSOS {
                     s += " " ;
                 }
 
-                document.getElementById("time").innerHTML = "Status: " + s;
+                document.getElementById("status").innerHTML = "Status: " + s;
             }
         }
 

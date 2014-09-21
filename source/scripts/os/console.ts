@@ -104,19 +104,17 @@ module TSOS {
          * Renders the clock and the status on the top
          * of the page.
          */
-        public renderDate(){
+        public  renderDate(){
 
-//            setInterval(function(){
-//                document.getElementById("time").innerHTML = new Date().toLocaleTimeString();
-//            },1000);
 
-            document.getElementById("time").innerHTML = "Hi, wanna edit me?";
 
-            $(document).ready(function () {
-                var clock; clock = $('.clock').FlipClock({
-                    clockFace: 'TwelveHourClock'
-                });
-            });
+            document.getElementById("status").innerHTML = "Hi, wanna edit me?";
+
+//            $(document).ready(function () {
+//                var clock; clock = $('.clock').FlipClock({
+//                    clockFace: 'TwelveHourClock'
+//                });
+//            });
         }
 
         public advanceLine(): void {

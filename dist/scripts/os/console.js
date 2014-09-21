@@ -105,17 +105,12 @@ var TSOS;
         * of the page.
         */
         Console.prototype.renderDate = function () {
-            //            setInterval(function(){
-            //                document.getElementById("time").innerHTML = new Date().toLocaleTimeString();
-            //            },1000);
-            document.getElementById("time").innerHTML = "Hi, wanna edit me?";
-
-            $(document).ready(function () {
-                var clock;
-                clock = $('.clock').FlipClock({
-                    clockFace: 'TwelveHourClock'
-                });
-            });
+            document.getElementById("status").innerHTML = "Hi, wanna edit me?";
+            //            $(document).ready(function () {
+            //                var clock; clock = $('.clock').FlipClock({
+            //                    clockFace: 'TwelveHourClock'
+            //                });
+            //            });
         };
 
         Console.prototype.advanceLine = function () {
