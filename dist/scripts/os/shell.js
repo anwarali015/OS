@@ -218,7 +218,7 @@ var TSOS;
         * Renders the current Date Object.
         */
         Shell.prototype.shellDate = function () {
-            _StdOut.putText("" + new Date().toLocaleDateString());
+            _StdOut.putText("" + new Date().toDateString() + " " + new Date().toLocaleTimeString());
         };
 
         /**
@@ -264,7 +264,7 @@ var TSOS;
             for (var i = 0; i < x.length; i++) {
                 var temp = x.charCodeAt(i);
 
-                if ((temp >= 65 && temp <= 70) || (temp >= 48 && temp <= 57) || (temp >= 97 && temp <= 102)) {
+                if ((temp == 32) || (temp >= 65 && temp <= 70) || (temp >= 48 && temp <= 57) || (temp >= 97 && temp <= 102)) {
                     continue;
                 } else {
                     _StdOut.putText("FOUND INVALID HEX CHARACTER!");

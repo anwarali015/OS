@@ -130,7 +130,7 @@ var TSOS;
 
             // TODO: Handle scrolling. (Project 1)
             if (this.currentYPosition >= _Canvas.height - 10) {
-                var currentCanvas = _DrawingContext.getImageData(0, this.currentFontSize, _Canvas.width, _Canvas.height);
+                var currentCanvas = _DrawingContext.getImageData(0, this.currentFontSize + 10, _Canvas.width, _Canvas.height);
                 _DrawingContext.putImageData(currentCanvas, 0, 0);
                 this.currentYPosition = _Canvas.height - this.currentFontSize;
             }
