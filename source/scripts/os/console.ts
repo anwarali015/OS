@@ -17,8 +17,11 @@ module TSOS {
                     public currentFontSize = _DefaultFontSize,
                     public currentXPosition = 0,
                     public currentYPosition = _DefaultFontSize,
-                    public buffer = "") {
+                    public buffer = "",
+                    public consoleHistory = new Array(),
+                    public historyIndex = -1
 
+            ) {
         }
 
         public init(): void {
@@ -45,6 +48,11 @@ module TSOS {
                     // The enter key marks the end of a console command, so ...
                     // ... tell the shell ...
                     _OsShell.handleInput(this.buffer);
+
+                    //Add buffer to the console history
+                    this.consoleHistory.push(this.buffer);
+                    //Last index of the buffer
+                    this.historyIndex = this.consoleHistory.length - 1;
                     // ... and reset our buffer.
                     this.buffer = "";
                 }
@@ -67,26 +75,104 @@ module TSOS {
             // decided to write one function and use the term "text" to connote string or char.
             // UPDATE: Even though we are now working in TypeScript, char and string remain undistinguished.
             if (text !== "") {
-                // Draw the text at the current X and Y coordinates.
-                _DrawingContext.drawText(this.currentFont, this.currentFontSize, this.currentXPosition, this.currentYPosition, text);
-                // Move the current X position.
-                var offset = _DrawingContext.measureText(this.currentFont, this.currentFontSize, text);
-                this.currentXPosition = this.currentXPosition + offset;
+//                // Draw the text at the current X and Y coordinates.
+//                _DrawingContext.drawText(this.currentFont, this.currentFontSize, this.currentXPosition, this.currentYPosition, text);
+//                // Move the current X position.
+//                var offset = _DrawingContext.measureText(this.currentFont, this.currentFontSize, text);
+//                var newx = this.currentXPosition + offset;
+
+                var i = 0;
+                while(i != text.length) {
+
+                    _DrawingContext.drawText(this.currentFont, this.currentFontSize, this.currentXPosition, this.currentYPosition, text[i]);
+
+                    var measurement = _DrawingContext.measureText(this.currentFont, this.currentFontSize, text[i]);
+                    var newLine = this.currentXPosition + measurement;
+
+                    // -10 because the border radius is 5px.
+                    if (newLine > (_Canvas.width - 10)) {
+                        this.advanceLine();
+                    } else {
+                        this.currentXPosition = newLine;
+                    }
+                    i++;
+                }
             }
          }
 
+        /**
+         * Renders the clock and the status on the top
+         * of the page.
+         */
+        public renderDate(){
+
+//            setInterval(function(){
+//                document.getElementById("time").innerHTML = new Date().toLocaleTimeString();
+//            },1000);
+
+            document.getElementById("time").innerHTML = "Hi, wanna edit me?";
+
+            $(document).ready(function () {
+                var clock; clock = $('.clock').FlipClock({
+                    clockFace: 'TwelveHourClock'
+                });
+            });
+        }
+
         public advanceLine(): void {
+
             this.currentXPosition = 0;
             /*
              * Font size measures from the baseline to the highest point in the font.
              * Font descent measures from the baseline to the lowest point in the font.
              * Font height margin is extra spacing between the lines.
              */
-            this.currentYPosition += _DefaultFontSize + 
+            this.currentYPosition += _DefaultFontSize +
                                      _DrawingContext.fontDescent(this.currentFont, this.currentFontSize) +
                                      _FontHeightMargin;
 
             // TODO: Handle scrolling. (Project 1)
+            if (this.currentYPosition  >= _Canvas.height - 10) {
+
+                var currentCanvas = _DrawingContext.getImageData(0, this.currentFontSize, _Canvas.width, _Canvas.height);
+                _DrawingContext.putImageData(currentCanvas, 0, 0);
+                this.currentYPosition = _Canvas.height - this.currentFontSize;
+            }
+        }
+
+        /**
+         *
+         * @param char, the character to delete
+         *
+         */
+        public deleteLastChar(char){
+
+            var x = this.currentXPosition - _DrawingContext.measureText(this.currentFont, this.currentFontSize, char);
+            var y = this.currentYPosition - _DefaultFontSize;
+            this.buffer = this.buffer.substr(0, this.buffer.length - 1);
+            _DrawingContext.clearRect(x, y, this.currentXPosition, this.currentYPosition +  10);
+            this.currentXPosition = this.currentXPosition - _DrawingContext.measureText(this.currentFont, this.currentFontSize, char);
+        }
+
+        /**
+         * Deletes the current line the user is at.
+         */
+        public deleteCurrentLine(){
+            var x = this.currentXPosition;
+            var y = this.currentYPosition - (_DefaultFontSize - 1);
+
+            for(var i=0; i<this.buffer.length;i++){
+                x -= _DrawingContext.measureText(this.currentFont, this.currentFontSize, this.buffer.charAt(i));
+            }
+            _DrawingContext.clearRect(x, y, this.currentXPosition, this.currentYPosition);
+            this.currentXPosition = x;
+        }
+
+        /**
+         * Reset the current Buffer.
+         */
+        public deleteCurrentBuffer(){
+            this.buffer = "";
         }
     }
  }

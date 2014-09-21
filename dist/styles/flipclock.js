@@ -1,8 +1,3 @@
-/*
-	Base.js, version 1.1a
-	Copyright 2006-2010, Dean Edwards
-	License: http://www.opensource.org/licenses/mit-license.php
-*/
 
 var Base = function() {
 	// dummy
@@ -147,15 +142,7 @@ Base = Base.extend({
 /*jshint smarttabs:true */
 
 var FlipClock;
-	
-/**
- * FlipClock.js
- *
- * @author     Justin Kimbrell
- * @copyright  2013 - Objective HTML, LLC
- * @licesnse   http://www.opensource.org/licenses/mit-license.php
- */
-	
+
 (function($) {
 	
 	"use strict";
@@ -312,14 +299,6 @@ var FlipClock;
 
 /*jshint smarttabs:true */
 
-/**
- * FlipClock.js
- *
- * @author     Justin Kimbrell
- * @copyright  2013 - Objective HTML, LLC
- * @licesnse   http://www.opensource.org/licenses/mit-license.php
- */
-	
 (function($) {
 	
 	"use strict";
@@ -547,42 +526,6 @@ var FlipClock;
 					t.addDigit(digit);
 				}
 			});
-
-			/*
-			DELETE PENDING - Legacy flip code that was replaced with the
-			much more simple logic above.
-
-			var offset = t.factory.lists.length - time.length;
-
-			if(offset < 0) {
-				offset = 0;
-			}			
-			
-			$.each(time, function(i, digit) {
-				i += offset;
-				
-				var list = t.factory.lists[i];
-				
-				console.log()
-
-				if(list) {
-					list.select(digit);
-					
-					if(!doNotAddPlayClass) {
-						list.play();	
-					}
-				}	
-				else {
-					t.addDigit(digit);
-				}
-			});
-
-			for(var x = 0; x < time.length; x++) {
-				if(x >= offset && t.factory.lists[x].digit != time[x]) {
-					t.factory.lists[x].select(time[x]);
-				}
-			}
-			*/
 		}
 					
 	});
@@ -591,14 +534,6 @@ var FlipClock;
 
 /*jshint smarttabs:true */
 
-/**
- * FlipClock.js
- *
- * @author     Justin Kimbrell
- * @copyright  2013 - Objective HTML, LLC
- * @licesnse   http://www.opensource.org/licenses/mit-license.php
- */
-	
 (function($) {
 	
 	"use strict";
@@ -948,14 +883,6 @@ var FlipClock;
 
 /*jshint smarttabs:true */
 
-/**
- * FlipClock.js
- *
- * @author     Justin Kimbrell
- * @copyright  2013 - Objective HTML, LLC
- * @licesnse   http://www.opensource.org/licenses/mit-license.php
- */
-	
 (function($) {
 	
 	"use strict";
@@ -1071,37 +998,6 @@ var FlipClock;
 
 				this.lastDigit = this.digit;
 			}
-
-			/*
-			var prevDigit = this.digit == 0 ? 9 : this.digit - 1;
-			var nextDigit = this.digit == 9 ? 0 : this.digit + 1;
-
-			this.setBeforeValue(prevDigit);
-			this.setActiveValue(this.digit);
-
-			var target = this.$el.find('[data-digit="'+digit+'"]');
-			var active = this.$el.find('.'+this.classes.active).removeClass(this.classes.active);
-			var before = this.$el.find('.'+this.classes.before).removeClass(this.classes.before);
-
-			if(!this.factory.countdown) {
-				if(target.is(':first-child')) {
-					this.$el.find(':last-child').addClass(this.classes.before);
-				}
-				else {
-					target.prev().addClass(this.classes.before);
-				}
-			}
-			else {
-				if(target.is(':last-child')) {
-					this.$el.find(':first-child').addClass(this.classes.before);
-				}
-				else {
-					target.next().addClass(this.classes.before);
-				}
-			}
-			
-			target.addClass(this.classes.active);	
-			*/		
 		},
 		
 		/**
@@ -1161,32 +1057,6 @@ var FlipClock;
 					this.createListItem(this.classes.active, this.digit),
 				'</ul>'
 			].join(''));
-			
-			/*
-			DELETE PENDING - Replace with the more simple logic above.
-			This should reduce the load on the some GPU's by having
-			signifantly fewing DOM nodes in memory.
-
-			for(var x = 0; x < 2; x++) {
-				var item = $([
-				'<li data-digit="'+x+'">',
-					'<a href="#">',
-						'<div class="up">',
-							'<div class="shadow"></div>',
-							'<div class="inn">'+x+'</div>',
-						'</div>',
-						'<div class="down">',
-							'<div class="shadow"></div>',
-							'<div class="inn">'+x+'</div>',
-						'</div>',
-					'</a>',
-				'</li>'].join(''));
-				
-				this.items.push(item);
-				
-				html.append(item);
-			}
-			*/
 						
 			return html;
 		},
@@ -1197,20 +1067,7 @@ var FlipClock;
 
 		getPrevDigit: function() {
 			return this.digit == 0 ? 9 : this.digit - 1;
-		},
-
-		/*
-		setActiveDigit: function(digit) {
-			var $obj = this.$el.find('.'+this.classes.active);
-
-			$obj.find('.inn').html(digit);
-			$obj.removeClass(this.classes.active).addClass(this.classes.active);
-		},
-
-		setActiveDigit: function(digit) {
-			this.$el.find('.'+this.classes.before).find('.inn').html(digit);
 		}
-		*/
 
 	});
 	
@@ -1218,14 +1075,6 @@ var FlipClock;
 }(jQuery));
 
 /*jshint smarttabs:true */
-
-/**
- * FlipClock.js
- *
- * @author     Justin Kimbrell
- * @copyright  2013 - Objective HTML, LLC
- * @licesnse   http://www.opensource.org/licenses/mit-license.php
- */
 	
 (function($) {
 	
@@ -1271,14 +1120,6 @@ var FlipClock;
 
 /*jshint smarttabs:true */
 
-/**
- * FlipClock.js
- *
- * @author     Justin Kimbrell
- * @copyright  2013 - Objective HTML, LLC
- * @licesnse   http://www.opensource.org/licenses/mit-license.php
- */
-	
 (function($) {
 	
 	"use strict";
@@ -1769,14 +1610,6 @@ var FlipClock;
 }(jQuery));
 
 /*jshint smarttabs:true */
-
-/**
- * FlipClock.js
- *
- * @author     Justin Kimbrell
- * @copyright  2013 - Objective HTML, LLC
- * @licesnse   http://www.opensource.org/licenses/mit-license.php
- */
 	
 (function($) {
 	

@@ -1,7 +1,8 @@
 /* TSOS.css */
 
 body {
-    background: #909193 url(../images/linen.png) repeat;
+    /*background: #909193 url(../images/linen.png) repeat;*/
+    background-color: darkgray;
     font-family: Helvetica, Verdana, Arial, sans-serif;
     font-size: 12pt;
     font-weight: normal;
@@ -32,7 +33,7 @@ h3 {
 
 #display {
     background-color:#DFDBC3;
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     cursor: default;
 }
 
@@ -56,7 +57,7 @@ h3 {
 }
 
 #btnHaltOS{
-    background-color: aquamarine;
+    background-color: palegoldenrod;
     font-size: 20px;
     border-radius: 5px;
     -webkit-border-radius: 10px;

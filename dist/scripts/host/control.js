@@ -68,16 +68,6 @@ var TSOS;
         // Host Events
         //
         Control.hostBtnStartOS_click = function (btn) {
-            /*
-            DISPLAY THE CLOCK @ THE TOP!
-            */
-            var clock;
-            $(document).ready(function () {
-                clock = $('.clock').FlipClock({
-                    clockFace: 'TwelveHourClock'
-                });
-            });
-
             // Disable the (passed-in) start button...
             btn.disabled = true;
 
@@ -99,7 +89,10 @@ var TSOS;
             _Kernel = new TSOS.Kernel();
             _Kernel.krnBootstrap();
 
-            document.getElementById("text").innerHTML = "<center><h1 style='color: darkgreen'>Status: Running.....</h1></center>";
+            /*
+            DISPLAY THE CLOCK @ THE TOP AND STATUS!
+            */
+            _Console.renderDate();
         };
 
         Control.hostBtnHaltOS_click = function (btn) {

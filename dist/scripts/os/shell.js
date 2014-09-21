@@ -11,7 +11,7 @@ var TSOS;
     var Shell = (function () {
         function Shell() {
             // Properties
-            this.promptStr = ">";
+            this.promptStr = "=>";
             this.commandList = [];
             this.curses = "[fuvg],[cvff],[shpx],[phag],[pbpxfhpxre],[zbgureshpxre],[gvgf]";
             this.apologies = "[sorry]";
@@ -38,7 +38,15 @@ var TSOS;
             this.commandList[this.commandList.length] = sc;
 
             //BSOD
-            sc = new TSOS.ShellCommand(this.shellBSOD, "bsod", "- Displays BSOD Screen.");
+            sc = new TSOS.ShellCommand(this.shellBSOD, "bsod", "- Are you sure you wanna try this?.");
+            this.commandList[this.commandList.length] = sc;
+
+            //load
+            sc = new TSOS.ShellCommand(this.shellLoad, "load", "- Validates the User Program Input.");
+            this.commandList[this.commandList.length] = sc;
+
+            //status
+            sc = new TSOS.ShellCommand(this.shellStatus, "status", "- Changes the status message specified by User.");
             this.commandList[this.commandList.length] = sc;
 
             // help
@@ -198,27 +206,91 @@ var TSOS;
             }
         };
 
+        /**
+        * Renders the OS Name and Version.
+        * @param args
+        */
         Shell.prototype.shellVer = function (args) {
             _StdOut.putText(APP_NAME + " version " + APP_VERSION);
         };
 
+        /**
+        * Renders the current Date Object.
+        */
         Shell.prototype.shellDate = function () {
-            _StdOut.putText("" + new Date());
+            _StdOut.putText("" + new Date().toLocaleDateString());
         };
 
+        /**
+        * Prints PI.
+        */
         Shell.prototype.shellSurprise = function () {
             _StdOut.putText("My favorite number is " + Math.PI);
         };
 
+        /**
+        * Prints the location.
+        */
         Shell.prototype.shellWheremi = function () {
             _StdOut.putText("I'm stuck in a loop....");
         };
 
+        /**
+        * Draws a blue screen over the canvas.
+        */
         Shell.prototype.shellBSOD = function () {
+            _Console.currentXPosition = 0;
+            _Console.currentYPosition = _Console.currentFontSize;
             var image = new Image();
             image.src = "dist/images/bsod.jpg";
+            _DrawingContext.clearRect(0, 0, 500, 500);
             _DrawingContext.drawImage(image, 0, 0, 500, 500);
             _Kernel.krnShutdown();
+        };
+
+        /**
+        * Loads the user input program if any,
+        * and validates HEX (at the moment).
+        *
+        */
+        Shell.prototype.shellLoad = function () {
+            var x = document.getElementById("taProgramInput").value;
+
+            if (x.length == 0) {
+                _StdOut.putText("There's NOTHING to load!");
+                return;
+            }
+
+            for (var i = 0; i < x.length; i++) {
+                var temp = x.charCodeAt(i);
+
+                if ((temp >= 65 && temp <= 70) || (temp >= 48 && temp <= 57) || (temp >= 97 && temp <= 102)) {
+                    continue;
+                } else {
+                    _StdOut.putText("FOUND INVALID HEX CHARACTER!");
+                    return;
+                }
+            }
+
+            _StdOut.putText("ALL HEX CHARACTERS!");
+        };
+
+        /**
+        * Changes the status of the system.
+        *
+        * @param args, the status to change.
+        */
+        Shell.prototype.shellStatus = function (args) {
+            if (args.length > 0) {
+                var s = "";
+
+                for (var i = 0; i < args.length; i++) {
+                    s += args[i];
+                    s += " ";
+                }
+
+                document.getElementById("time").innerHTML = "Status: " + s;
+            }
         };
 
         Shell.prototype.shellHelp = function (args) {
